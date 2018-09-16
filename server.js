@@ -26,7 +26,7 @@ app.get("/bot", (req, res) => {
         replyToken: replyToken,
         message: message
     }
-    request.post({url: 'https://api.line.me/v2/bot/message/push',
+    request.post({url: 'https://api.line.me/v2/bot/message/reply',
                 form: data,
                 headers: {
                     "Content-Type": "application/json",
