@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/bot", (req, res) => {
-
+    res.send(req.body);
 });
 
 app.listen(8080, () => {
