@@ -1,4 +1,4 @@
-// const request = require('request');
+const request = require('request');
 const express = require('express');
 const hbs = require('hbs');
 const app = express();
@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/bot", (req, res) => {
-    // res.send(req.body);
+    res.send(req.body);
 });
 
 app.listen(port, () => {
