@@ -36,7 +36,7 @@ app.get("/bot", (req, res) => {
         if (err) {
             return res.send('Error');
         }
-        res.send('success');
+        return 'haha';
     });
 });
 
