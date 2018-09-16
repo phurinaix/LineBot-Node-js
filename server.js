@@ -16,9 +16,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/bot", (req, res) => {
-    var events = JSON.parse(req.body);
+    var events = req.body;
     res.send(events);
-    // res.send(events[0].source.userId);
+    res.send(events[0].source.userId);
 });
 
 app.listen(port, () => {
