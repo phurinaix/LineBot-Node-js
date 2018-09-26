@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const sendMessage = require('./sendMessage');
+const api = require('./api');
 
 app.set('view engine', 'hbs');
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -19,6 +20,9 @@ app.post("/webhook", (req, res) => {
 
     if (text.toLowerCase() === 'hello') {
         sendMessage.sendText(sender, 'สวัสดีจ้ะ');
+    }
+    else if (text === 'book') {
+        sendMessage.sendText(sender, api.library(5810742139, 1869900283041));
     }
     res.sendStatus(200)
 });

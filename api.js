@@ -12,17 +12,19 @@ var library = (username, password) => {
         if (err) {
             return console.log('Failed to request: ', err);
         }
-        // console.log(`Sending ${username} and get => ${body}`);
-        const $ = cheerio.load(body);
+        // const $ = cheerio.load(body);
 
         const fine = $('a[href="#opac-user-fines"]').text();
+        var allBook = "";
         console.log(fine);
         $('a.title').each((i, el) => {
             const text = $(el).text();
-            return console.log(text);
+            // return console.log(text);
+            allBook += text + "\n";
         });
+        return allBook;
     });
 }
 
-library(5810742139, 1869900283041);
+// library(5810742139, 1869900283041);
 module.exports.library = library;
