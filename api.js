@@ -12,7 +12,7 @@ var library = (username, password) => {
         if (err) {
             return console.log('Failed to request: ', err);
         }
-        // const $ = cheerio.load(body);
+        const $ = cheerio.load(body);
 
         const fine = $('a[href="#opac-user-fines"]').text();
         var allBook = "";
