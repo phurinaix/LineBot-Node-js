@@ -22,7 +22,10 @@ app.post("/webhook", (req, res) => {
         sendMessage.sendText(sender, 'สวัสดีจ้ะ');
     }
     else if (text === 'book') {
-        sendMessage.sendText(sender, api.library(5810742139, 1869900283041));
+        sendMessage.sendText(sender, api.library());
+    }
+    else if (text === 'fine') {
+        sendMessage.sendText(sender, 'what data ?');
     }
     res.sendStatus(200)
 });
