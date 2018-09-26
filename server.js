@@ -1,6 +1,5 @@
 const request = require('request');
 const express = require('express');
-const hbs = require('hbs');
 const app = express();
 const bodyParser = require('body-parser');
 
@@ -9,35 +8,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const port = process.env.PORT || 3000;
-const accessToken = 'yQ2kd1osEoogk01nfEhrYyMy9DsDMF3Wnb6jiCJTK2QPuv3kV3qrX7X4vsT51sv43sKUI0UOdRhcVykTf5NGYF1eEei8Nl+nXZV8tIZ1iNlYiAjMrSKNRt3pREOkbWpWgiYDS/n0StZg4C7AdII3lgdB04t89/1O/w1cDnyilFU=';
+const accessToken = 'SHwO9NnQZl55uilTN/LEpU7msQnq+OjDSX0vg/EXMeSSEzzQw3qZh18QSy7bRRQLO5GGgj2/VxtgdVIND2v1G4EtMlTR3/91WdgohUMYUyrLco/VFcolW14aR3fpeI9zo6TkYLkZmuoTdoAA3eEhWgdB04t89/1O/w1cDnyilFU=';
 
 app.get("/", (req, res) => {
     res.render('home.hbs');
 });
 
-app.get("/bot", (req, res) => {
-    var events = req.body;
-    var replyToken = events.replyToken;
-    var message = {
-        type: 'text',
-        text: 'haha'
-    }
-    var data = {
-        replyToken: replyToken,
-        message: message
-    }
-    request.post({url: 'https://api.line.me/v2/bot/message/reply',
-                formData: data,
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer " + accessToken
-                }
-            }, (err, response, body) => {
-        if (err) {
-            return res.send('Error');
-        }
-        return 'haha';
-    });
+app.post("/webhook", (req, res) => {
+    
 });
 
 app.listen(port, () => {
