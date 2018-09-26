@@ -40,7 +40,7 @@ function sendText (sender, text) {
     request({
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer key Api'
+        'Authorization': `Bearer ${accessToken}`
       },
       url: 'https://api.line.me/v2/bot/message/push',
       method: 'POST',
