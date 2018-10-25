@@ -25,7 +25,7 @@ app.post("/webhook", (req, res) => {
         sendMessage.sendText(sender, req.body.events[0]);
     }
     else if (text === 'fine') {
-        sendMessage.sendText(sender, 'what data ?');
+        sendMessage.sendText(sender, 'What the fuck bro');
     }
     res.sendStatus(200)
 });
