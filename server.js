@@ -16,8 +16,12 @@ app.get("/", (req, res) => {
 
 app.post("/webhook", (req, res) => {
     var text = req.body.events[0].message.text
+    var type = req.body.events[0].type;
     var sender = req.body.events[0].source.userId
 
+    if (type == 'follow') {
+        sendMessage.sendText(sender, sender);
+    }
     if (text.toLowerCase() === 'hello') {
         sendMessage.sendText(sender, 'สวัสดีจ้ะ');
     }
@@ -25,7 +29,7 @@ app.post("/webhook", (req, res) => {
         sendMessage.sendText(sender, req.body.events[0]);
     }
     else if (text === 'fine') {
-        sendMessage.sendText(sender, 'What the fuck bro');
+        sendMessage.sendText(sender, 'What are u doing');
     }
     res.sendStatus(200)
 });
