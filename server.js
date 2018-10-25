@@ -19,7 +19,10 @@ app.post("/webhook", (req, res) => {
     var type = req.body.events[0].type;
     var sender = req.body.events[0].source.userId
 
-    // if (type == 'follow') {
+    if (type == 'join') {
+        var groupId = req.body.events[0].source.groupId;
+        sendMessage.sendText(sender, groupId);
+    }
     sendMessage.sendText(sender, 'sender');
     if (text.toLowerCase() === 'hello') {
         sendMessage.sendText(sender, 'สวัสดีจ้ะ');
