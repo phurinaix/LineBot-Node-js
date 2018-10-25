@@ -21,7 +21,7 @@ app.post("/webhook", (req, res) => {
 
     if (type == 'join') {
         var groupId = req.body.events[0].source.groupId;
-        sendMessage.sendText(sender, 'groupId: ' + groupId);
+        sendMessage.sendText(groupId, 'groupId: ' + groupId);
     }
     else if (type == 'follow') {
         var sender = req.body.events[0].source.userId
