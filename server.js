@@ -29,6 +29,7 @@ app.post("/webhook", (req, res) => {
     }
     else if (type == 'message') {
         var sender = req.body.events[0].source.userId
+        var text = req.body.events[0].message.text
         if (text.toLowerCase() === 'hello') {
             sendMessage.sendText(sender, 'สวัสดีจ้ะ');
         }
