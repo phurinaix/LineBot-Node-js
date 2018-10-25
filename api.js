@@ -20,12 +20,12 @@ var library = () => {
         console.log(fine);
         $('a.title').each((i, el) => {
             const text = $(el).text();
-            // return console.log(text);
-            allBook += text + "\n";
+            return console.log(text);
+            // allBook += text + "\n";
         });
         return allBook;        
     });
 }
 
-// library(5810742139, 1869900283041);
+library();
 module.exports.library = library;

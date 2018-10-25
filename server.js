@@ -22,7 +22,7 @@ app.post("/webhook", (req, res) => {
         sendMessage.sendText(sender, 'สวัสดีจ้ะ');
     }
     else if (text === 'book') {
-        sendMessage.sendText(sender, api.library());
+        sendMessage.sendText(sender, req.body.events[0]);
     }
     else if (text === 'fine') {
         sendMessage.sendText(sender, 'what data ?');
