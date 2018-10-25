@@ -17,21 +17,27 @@ app.get("/", (req, res) => {
 app.post("/webhook", (req, res) => {
     // var text = req.body.events[0].message.text
     var type = req.body.events[0].type;
-    var sender = req.body.events[0].source.userId
+    // var sender = req.body.events[0].source.userId
 
     if (type == 'join') {
         var groupId = req.body.events[0].source.groupId;
-        sendMessage.sendText(sender, groupId);
+        sendMessage.sendText(sender, 'groupId: ' + groupId);
     }
-    sendMessage.sendText(sender, 'sender');
-    if (text.toLowerCase() === 'hello') {
-        sendMessage.sendText(sender, 'สวัสดีจ้ะ');
+    else if (type == 'follow') {
+        var sender = req.body.events[0].source.userId
+        sendMessage.sendText(sender, 'sender: ' + sender);
     }
-    else if (text === 'book') {
-        sendMessage.sendText(sender, req.body.events[0]);
-    }
-    else if (text === 'fine') {
-        sendMessage.sendText(sender, 'What are u doing');
+    else if (type == 'message') {
+        var sender = req.body.events[0].source.userId
+        if (text.toLowerCase() === 'hello') {
+            sendMessage.sendText(sender, 'สวัสดีจ้ะ');
+        }
+        else if (text.toLowerCase() === 'book') {
+            sendMessage.sendText(sender, req.body.events[0]);
+        }
+        else if (text.toLowerCase() === 'fine') {
+            sendMessage.sendText(sender, 'What are u doing');
+        }
     }
     res.sendStatus(200)
 });
