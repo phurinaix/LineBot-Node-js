@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/webhook", (req, res) => {
-    var text = req.body.events[0].message.text
+    // var text = req.body.events[0].message.text
     var type = req.body.events[0].type;
     var sender = req.body.events[0].source.userId
 
