@@ -19,9 +19,8 @@ app.post("/webhook", (req, res) => {
     var type = req.body.events[0].type;
     var sender = req.body.events[0].source.userId
 
-    if (type == 'follow') {
-        sendMessage.sendText(sender, sender);
-    }
+    // if (type == 'follow') {
+    sendMessage.sendText(sender, 'sender');
     if (text.toLowerCase() === 'hello') {
         sendMessage.sendText(sender, 'สวัสดีจ้ะ');
     }
