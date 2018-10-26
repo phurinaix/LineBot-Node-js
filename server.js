@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const CronJob = require('cron').CronJob;
 const {sendMessage, leaveGroup} = require('./api/messaging-api');
 const words = require('./words.js');
+const {lifeTime} = require('./lifetime');
 
 app.set('view engine', 'hbs');
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -22,10 +23,8 @@ app.post("/webhook", (req, res) => {
         var groupId = req.body.events[0].source.groupId;
         sendMessage(groupId, 'groupId: ' + groupId);
 
-        var date = new Date();
-        var minutes = date.getMinutes();
-
-        new CronJob(`0 ${minutes + 1} * * * *`, function () {
+        // lifetime in minutes
+        new CronJob(lifeTime(1), function () {
             leaveGroup(groupId);
         }, null, true, 'Asia/Bangkok');
     }
