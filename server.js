@@ -24,7 +24,7 @@ app.post("/webhook", (req, res) => {
         // sendMessage(groupId, 'groupId: ' + groupId);
 
         // lifetime in minutes
-        new CronJob(lifeTime(1), function () {
+        new CronJob(`0 28 * * * *`, function () {
             // leaveGroup(groupId);
             // sendMessage(groupId, 'groupId: ' + groupId);
             sendMessage('Cf5592cfee23957b59bd99d543e134828', 'Hello');
