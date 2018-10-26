@@ -21,10 +21,10 @@ app.post("/webhook", (req, res) => {
 
     if (type == 'join') {
         var groupId = req.body.events[0].source.groupId;
-        sendMessage(groupId, 'groupId: ' + groupId);
+        sendMessage(groupId, 'time: ' + lifeTime(1));
 
         // lifetime in minutes
-        new CronJob(`${lifeTime(1)}`, function () {
+        new CronJob(lifeTime(1), function () {
             // leaveGroup(groupId);
             // sendMessage(groupId, 'groupId: ' + groupId);
             sendMessage(groupId, 'Hello');
