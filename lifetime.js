@@ -1,6 +1,6 @@
-function lifeTime(time) {
-    var now = new Date();
-    var next = new Date(now.getTime() + time * 60000);
+function lifeTime(time, dateNow) {
+    // var now = new Date();
+    var next = new Date(dateNow.getTime() + time * 60000);
 
     var seconds = next.getSeconds();
     var minutes = next.getMinutes();

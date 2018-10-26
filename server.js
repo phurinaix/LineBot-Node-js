@@ -23,8 +23,9 @@ app.post("/webhook", (req, res) => {
         var groupId = req.body.events[0].source.groupId;
         sendMessage(groupId, 'time: ' + lifeTime(1));
 
+        var dateNow = new Date();
         // lifetime in minutes
-        new CronJob(lifeTime(1), function () {
+        new CronJob(lifeTime(1, dateNow), function () {
             // leaveGroup(groupId);
             // sendMessage(groupId, 'groupId: ' + groupId);
             sendMessage(groupId, 'Hello');
