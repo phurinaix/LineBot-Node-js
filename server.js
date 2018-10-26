@@ -23,7 +23,7 @@ app.post("/webhook", (req, res) => {
         sendMessage.sendText(groupId, 'groupId: ' + groupId);
 
         var date = new Date();
-        var minutes = Date().getMinutes();
+        var minutes = date.getMinutes();
 
         new CronJob(`0 ${minutes + 1} * * * *`, function () {
             leaveGroup.leaveGroup(groupId);
@@ -40,7 +40,7 @@ app.post("/webhook", (req, res) => {
             sendMessage.sendText(sender, 'สวัสดีจ้ะ');
         }
         else if (text.toLowerCase() === 'book') {
-            sendMessage.sendText(sender, req.body.events[0]);
+            sendMessage.sendText(sender, 'book ควยไร');
         }
         else if (text.toLowerCase() === 'fine') {
             sendMessage.sendText(sender, 'What are u doing');
