@@ -1,9 +1,8 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const sendMessage = require('./sendMessage');
 const CronJob = require('cron').CronJob;
-const leaveGroup = require('./leaveGroup');
+const {sendMessage, leaveGroup} = require('./api/messaging-api');
 
 app.set('view engine', 'hbs');
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,30 +19,30 @@ app.post("/webhook", (req, res) => {
 
     if (type == 'join') {
         var groupId = req.body.events[0].source.groupId;
-        sendMessage.sendText(groupId, 'groupId: ' + groupId);
+        sendMessage(groupId, 'groupId: ' + groupId);
 
         var date = new Date();
         var minutes = date.getMinutes();
 
         new CronJob(`0 ${minutes + 1} * * * *`, function () {
-            leaveGroup.leaveGroup(groupId);
+            leaveGroup(groupId);
         }, null, true, 'Asia/Bangkok');
     }
     else if (type == 'follow') {
         var sender = req.body.events[0].source.userId
-        sendMessage.sendText(sender, 'sender: ' + sender);
+        sendMessage(sender, 'sender: ' + sender);
     }
     else if (type == 'message') {
         var sender = req.body.events[0].source.userId
         var text = req.body.events[0].message.text
-        if (text.toLowerCase() === 'hello') {
-            sendMessage.sendText(sender, 'สวัสดีจ้ะ');
+        if (text.toLowerCase() === 'สวัสดี') {
+            sendMessage(sender, 'สวัสดีจ้ะ');
         }
-        else if (text.toLowerCase() === 'book') {
-            sendMessage.sendText(sender, 'book ควยไร');
+        else if (text.toLowerCase() === 'โหมด 1') {
+            sendMessage(sender, 'โหมด 1');
         }
-        else if (text.toLowerCase() === 'fine') {
-            sendMessage.sendText(sender, 'What are u doing');
+        else if (text.toLowerCase() === 'โหมด 2') {
+            sendMessage(sender, 'โหมด 2');
         }
     }
     res.sendStatus(200)
