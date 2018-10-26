@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const sendMessage = require('./sendMessage');
-const api = require('./api');
+const fs = require('fs');
 
 app.set('view engine', 'hbs');
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -15,12 +15,13 @@ app.get("/", (req, res) => {
 });
 
 app.post("/webhook", (req, res) => {
-    // var text = req.body.events[0].message.text
     var type = req.body.events[0].type;
-    // var sender = req.body.events[0].source.userId
 
     if (type == 'join') {
         var groupId = req.body.events[0].source.groupId;
+        fs.appendFile('group.txt', groupId, (err) => {
+            if (err) throw err;
+        });
         sendMessage.sendText(groupId, 'groupId: ' + groupId);
     }
     else if (type == 'follow') {
