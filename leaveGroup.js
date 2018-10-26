@@ -16,4 +16,4 @@ function leaveGroup (groupId) {
     })
 }
 
-module.exports.sendText = sendText;
+module.exports.leaveGroup = leaveGroup;
