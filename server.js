@@ -21,13 +21,13 @@ app.post("/webhook", (req, res) => {
 
     if (type == 'join') {
         var groupId = req.body.events[0].source.groupId;
-        // sendMessage(groupId, 'groupId: ' + groupId);
+        sendMessage(groupId, 'groupId: ' + groupId);
 
         // lifetime in minutes
-        new CronJob(`0 28 * * * *`, function () {
+        new CronJob(`${lifeTime(1)}`, function () {
             // leaveGroup(groupId);
             // sendMessage(groupId, 'groupId: ' + groupId);
-            sendMessage('Cf5592cfee23957b59bd99d543e134828', 'Hello');
+            sendMessage(groupId, 'Hello');
         }, null, true, 'Asia/Bangkok');
     }
     else if (type == 'follow') {
