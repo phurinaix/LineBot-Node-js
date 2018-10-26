@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const CronJob = require('cron').CronJob;
 const {sendMessage, leaveGroup} = require('./api/messaging-api');
+const words = require('./words.js');
 
 app.set('view engine', 'hbs');
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -35,14 +36,45 @@ app.post("/webhook", (req, res) => {
     else if (type == 'message') {
         var sender = req.body.events[0].source.userId
         var text = req.body.events[0].message.text
-        if (text.toLowerCase() === 'สวัสดี') {
+
+        // greeting message
+        if (words.greeting.includes(text.toLowerCase())) {
             sendMessage(sender, 'สวัสดีจ้ะ');
         }
-        else if (text.toLowerCase() === 'โหมด 1') {
+
+        // mode 1
+        else if (words.mode_1.includes(text.toLowerCase())) {
             sendMessage(sender, 'โหมด 1');
         }
-        else if (text.toLowerCase() === 'โหมด 2') {
+
+        // mode 2
+        else if (words.mode_2.includes(text.toLowerCase())) {
             sendMessage(sender, 'โหมด 2');
+        }
+
+        // mode 3
+        else if (words.mode_3.includes(text.toLowerCase())) {
+            sendMessage(sender, 'โหมด 3');
+        }
+
+        // mode 4
+        else if (words.mode_4.includes(text.toLowerCase())) {
+            sendMessage(sender, 'โหมด 4');
+        }
+
+        // mode 5
+        else if (words.mode_5.includes(text.toLowerCase())) {
+            sendMessage(sender, 'โหมด 5');
+        }
+
+        // mode 6
+        else if (words.mode_6.includes(text.toLowerCase())) {
+            sendMessage(sender, 'โหมด 6');
+        }
+
+        // mode 7
+        else if (words.mode_7.includes(text.toLowerCase())) {
+            sendMessage(sender, 'โหมด 7');
         }
     }
     res.sendStatus(200)
