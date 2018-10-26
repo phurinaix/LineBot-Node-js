@@ -42,7 +42,7 @@ function leaveGroup (groupId) {
     })
 }
 
-module.exports {
-    sendText,
+module.exports = {
+    sendMessage,
     leaveGroup
 }
