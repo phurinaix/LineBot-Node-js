@@ -35,45 +35,45 @@ app.post("/webhook", (req, res) => {
     }
     else if (type == 'message') {
         var sender = req.body.events[0].source.userId
-        var text = req.body.events[0].message.text
+        var text = req.body.events[0].message.text.toLowerCase().replace(/\s+/g, "");
 
         // greeting message
-        if (words.greeting.includes(text.toLowerCase())) {
+        if (words.greeting.includes(text)) {
             sendMessage(sender, 'สวัสดีจ้ะ');
         }
 
         // mode 1
-        else if (words.mode_1.includes(text.toLowerCase())) {
+        else if (words.mode_1.includes(text)) {
             sendMessage(sender, 'โหมด 1');
         }
 
         // mode 2
-        else if (words.mode_2.includes(text.toLowerCase())) {
+        else if (words.mode_2.includes(text)) {
             sendMessage(sender, 'โหมด 2');
         }
 
         // mode 3
-        else if (words.mode_3.includes(text.toLowerCase())) {
+        else if (words.mode_3.includes(text)) {
             sendMessage(sender, 'โหมด 3');
         }
 
         // mode 4
-        else if (words.mode_4.includes(text.toLowerCase())) {
+        else if (words.mode_4.includes(text)) {
             sendMessage(sender, 'โหมด 4');
         }
 
         // mode 5
-        else if (words.mode_5.includes(text.toLowerCase())) {
+        else if (words.mode_5.includes(text)) {
             sendMessage(sender, 'โหมด 5');
         }
 
         // mode 6
-        else if (words.mode_6.includes(text.toLowerCase())) {
+        else if (words.mode_6.includes(text)) {
             sendMessage(sender, 'โหมด 6');
         }
 
         // mode 7
-        else if (words.mode_7.includes(text.toLowerCase())) {
+        else if (words.mode_7.includes(text)) {
             sendMessage(sender, 'โหมด 7');
         }
     }
