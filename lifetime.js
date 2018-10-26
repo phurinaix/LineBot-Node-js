@@ -12,5 +12,6 @@ function lifeTime(time) {
     return `${seconds} ${minutes} ${hours} ${dayOfMonth} ${month} ${dayOfWeek}`;
 }
 
-console.log(lifeTime(50));
-module.exports.lifeTime = lifeTime;
+module.exports = {
+    lifeTime
+}
