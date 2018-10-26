@@ -7,9 +7,10 @@ function lifeTime(time) {
     var hours = next.getHours();
     var dayOfMonth = next.getDate();
     var month = next.getMonth() + 1;
-    var dayOfWeek = next.getFullYear();
+    var dayOfWeek = next.getDay();
 
     return `${seconds} ${minutes} ${hours} ${dayOfMonth} ${month} ${dayOfWeek}`;
 }
 
+console.log(lifeTime(50));
 module.exports.lifeTime = lifeTime;
