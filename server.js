@@ -19,13 +19,16 @@ app.post("/webhook", (req, res) => {
 
     if (type == 'join') {
         var groupId = req.body.events[0].source.groupId;
-        fs.appendFile('group.txt', groupId, (err) => {
+        fs.appendFile(__dirname + '/group.txt', groupId, (err) => {
             if (err) throw err;
         });
         sendMessage.sendText(groupId, 'groupId: ' + groupId);
     }
     else if (type == 'follow') {
         var sender = req.body.events[0].source.userId
+        fs.appendFile(__dirname + '/friend.txt', sender, (err) => {
+            if (err) throw err;
+        });
         sendMessage.sendText(sender, 'sender: ' + sender);
     }
     else if (type == 'message') {
