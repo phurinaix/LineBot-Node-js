@@ -21,11 +21,13 @@ app.post("/webhook", (req, res) => {
 
     if (type == 'join') {
         var groupId = req.body.events[0].source.groupId;
-        sendMessage(groupId, 'groupId: ' + groupId);
+        // sendMessage(groupId, 'groupId: ' + groupId);
 
         // lifetime in minutes
         new CronJob(lifeTime(1), function () {
-            leaveGroup(groupId);
+            // leaveGroup(groupId);
+            sendMessage(groupId, 'groupId: ' + groupId);
+            sendMessage(groupId, 'Hello');
         }, null, true, 'Asia/Bangkok');
     }
     else if (type == 'follow') {
@@ -82,3 +84,7 @@ app.post("/webhook", (req, res) => {
 app.listen(port, () => {
     console.log('Starting port');
 });
+
+// new CronJob(lifeTime(1), function () {
+//     leaveGroup('Cf5592cfee23957b59bd99d543e134828');
+// }, null, true, 'Asia/Bangkok');
