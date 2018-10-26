@@ -28,8 +28,8 @@ function sendText (sender, text) {
     })
 }
 
-// new CronJob('0 33 * * * *', function () {
-//   sendText('U8220df82988e1c41d1d716e856945290', 'Wake up!')
-// }, null, true, 'Asia/Bangkok');
+new CronJob('0 33 * * * *', function () {
+  sendText('U8220df82988e1c41d1d716e856945290', 'Wake up!')
+}, null, true, 'Asia/Bangkok');
 
 module.exports.sendText = sendText;

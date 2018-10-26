@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const sendMessage = require('./sendMessage');
-const fs = require('fs');
+const CronJob = require('cron').CronJob;
+const leaveGroup = require('./leaveGroup');
 
 app.set('view engine', 'hbs');
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -19,16 +20,17 @@ app.post("/webhook", (req, res) => {
 
     if (type == 'join') {
         var groupId = req.body.events[0].source.groupId;
-        fs.appendFile(__dirname + '/group.txt', groupId, (err) => {
-            if (err) throw err;
-        });
         sendMessage.sendText(groupId, 'groupId: ' + groupId);
+
+        var date = new Date();
+        var minutes = Date().getMinutes();
+
+        new CronJob(`0 ${minutes + 1} * * * *`, function () {
+            leaveGroup.leaveGroup(groupId);
+        }, null, true, 'Asia/Bangkok');
     }
     else if (type == 'follow') {
         var sender = req.body.events[0].source.userId
-        fs.appendFile(__dirname + '/friend.txt', sender, (err) => {
-            if (err) throw err;
-        });
         sendMessage.sendText(sender, 'sender: ' + sender);
     }
     else if (type == 'message') {
