@@ -21,9 +21,9 @@ function sendMessage (sender, text) {
       body: data,
       json: true
     }, function (err, res, body) {
-      if (err) console.log('error')
-      if (res) console.log('success')
-      if (body) console.log(body)
+        if (err) console.log('error')
+        if (res) console.log('success')
+        if (body) console.log(body)
     })
 }
 
