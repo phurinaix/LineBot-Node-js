@@ -26,8 +26,8 @@ app.post("/webhook", (req, res) => {
         // lifetime in minutes
         new CronJob(lifeTime(1), function () {
             // leaveGroup(groupId);
-            sendMessage(groupId, 'groupId: ' + groupId);
-            sendMessage(groupId, 'Hello');
+            // sendMessage(groupId, 'groupId: ' + groupId);
+            sendMessage('Cf5592cfee23957b59bd99d543e134828', 'Hello');
         }, null, true, 'Asia/Bangkok');
     }
     else if (type == 'follow') {
