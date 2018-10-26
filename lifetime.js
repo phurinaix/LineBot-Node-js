@@ -6,7 +6,7 @@ function lifeTime(time) {
     var minutes = next.getMinutes();
     var hours = next.getHours();
     var dayOfMonth = next.getDate();
-    var month = next.getMonth() + 1;
+    var month = next.getMonth();
     var dayOfWeek = next.getDay();
 
     return `${seconds} ${minutes} ${hours} ${dayOfMonth} ${month} ${dayOfWeek}`;
