@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const port = process.env.PORT || 3000;
+process.env.TZ = 'Asia/Bangkok';
 
 app.get("/", (req, res) => {
     res.render('home.hbs');
