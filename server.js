@@ -6,6 +6,7 @@ const {sendMessage, leaveGroup} = require('./api/messaging-api');
 const words = require('./words.js');
 const {lifeTime} = require('./lifetime');
 const {lotteryResult} = require('./scrap/lottery');
+const {asyncTime} = require('./async');
 
 app.set('view engine', 'hbs');
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -48,8 +49,8 @@ app.post("/webhook", (req, res) => {
 
         // mode 1
         else if (words.mode_1.includes(text)) {
-            lotteryResult.then((res) => {
-                sendMessage(sender, `length = ${res.length} and value is : ${res}`);
+            asyncTime.then((res) => {
+                sendMessage(sender, res);
             }).catch((err) => {
                 sendMessage(sender, "error");
             });
@@ -93,9 +94,13 @@ app.listen(port, () => {
 });
 
 // lotteryResult.then((res) => {
-//     console.log(res);
+//     console.log(`length = ${res.length} and value is : ${res}`);
 // }).catch((err) => {
 //     console.log("error");
+// });
+
+// asyncTime.then((res) => {
+//     console.log(res);
 // });
 // new CronJob(lifeTime(1), function () {
 //     leaveGroup('Cf5592cfee23957b59bd99d543e134828');
