@@ -20,6 +20,7 @@ lotteryResult = new Promise((resolve, reject) => {
                 case 0 : 
                     governmentLottery = $(lottery);
                     firstPrize = governmentLottery.children('td').eq(0).text().replace(/\s/g, '');
+                    resolve(firstPrize);
                     break;
                 case 1 : thaiLottery = $(lottery); break;
                 case 2 : interLottery = $(lottery); break;
@@ -41,13 +42,11 @@ lotteryResult = new Promise((resolve, reject) => {
         //         case 3 : lastTwoDigits = number; break;
         //     }
         // });
-        // console.log(governmentLottery.children('td').eq(1).html());
 
         // console.log(firstPrize);
         // console.log(firstThreeDigits);
         // console.log(lastThreeDigits);
         // console.log(lastTwoDigits);
-        resolve(firstPrize);
     });
 });
 
