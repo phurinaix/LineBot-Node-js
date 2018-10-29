@@ -12,7 +12,7 @@ lotteryResult = new Promise((resolve, reject) => {
         const lotteries = $('.table-bordered tbody');
         var governmentLottery, thaiLottery, interLottery, jabYeeGee, jabYeeGeeVIP;
         var thaiLotteryMorning, thaiLotteryNoon, thaiLotteryAfternoon, thaiLotteryEvening;
-        var firstPrize, firstThreeDigits, lastThreeDigits, lastTwoDigits;
+        var firstPrize = "no value", firstThreeDigits, lastThreeDigits, lastTwoDigits;
 
         $('.table-bordered tbody tr').each((index, lottery) => {
 
