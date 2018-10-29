@@ -42,7 +42,7 @@ app.post("/webhook", (req, res) => {
         var text = req.body.events[0].message.text.toLowerCase().replace(/\s+/g, "");
 
         // greeting message
-        if (words.greeting.includes(text)) {
+        if (text == "hi") {
             sendMessage(sender, 'สวัสดีจ้ะ');
         }
 
