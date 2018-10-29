@@ -17,7 +17,10 @@ lotteryResult = new Promise((resolve, reject) => {
         $('.table-bordered tbody tr').each((index, lottery) => {
 
             switch(index) {
-                case 0 : governmentLottery = $(lottery); break;
+                case 0 : 
+                    governmentLottery = $(lottery);
+                    firstPrize = governmentLottery.children('td').eq(0).text().replace(/\s/g, '');
+                    break;
                 case 1 : thaiLottery = $(lottery); break;
                 case 2 : interLottery = $(lottery); break;
                 case 3 : thaiLotteryMorning = $(lottery); break;
@@ -29,15 +32,16 @@ lotteryResult = new Promise((resolve, reject) => {
             }
         });
 
-        governmentLottery.children('td').each((index, element) => {
-            var number = $(element).text().replace(/\s/g, '');
-            switch(index) {
-                case 0 : firstPrize = number; break;
-                case 1 : firstThreeDigits = number; break;
-                case 2 : lastThreeDigits = number; break;
-                case 3 : lastTwoDigits = number; break;
-            }
-        });
+        // governmentLottery.children('td').each((index, element) => {
+        //     var number = $(element).text().replace(/\s/g, '');
+        //     switch(index) {
+        //         case 0 : firstPrize = number; break;
+        //         case 1 : firstThreeDigits = number; break;
+        //         case 2 : lastThreeDigits = number; break;
+        //         case 3 : lastTwoDigits = number; break;
+        //     }
+        // });
+        // console.log(governmentLottery.children('td').eq(1).html());
 
         // console.log(firstPrize);
         // console.log(firstThreeDigits);
@@ -47,7 +51,7 @@ lotteryResult = new Promise((resolve, reject) => {
     });
 });
 
-
+// lotteryResult();
 // lotteryResult.then((res) => {
 //     console.log(res);
 // }).catch((err) => {
