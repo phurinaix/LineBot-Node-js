@@ -49,7 +49,7 @@ app.post("/webhook", (req, res) => {
         // mode 1
         else if (words.mode_1.includes(text)) {
             lotteryResult.then((res) => {
-                sendMessage(sender, res);
+                sendMessage(sender, `length = ${res.length} and value is : ${res}`);
             }).catch((err) => {
                 sendMessage(sender, "error");
             });
