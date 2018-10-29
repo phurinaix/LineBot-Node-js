@@ -20,8 +20,7 @@ lotteryResult = new Promise((resolve, reject) => {
                 case 0 : 
                     governmentLottery = $(lottery);
                     firstPrize = governmentLottery.children('td').eq(0).text().replace(/\s/g, '');
-                    resolve(firstPrize);
-                    break;
+                    return resolve(firstPrize);
                 case 1 : thaiLottery = $(lottery); break;
                 case 2 : interLottery = $(lottery); break;
                 case 3 : thaiLotteryMorning = $(lottery); break;

@@ -92,6 +92,11 @@ app.listen(port, () => {
     console.log('Starting port');
 });
 
+// lotteryResult.then((res) => {
+//     console.log(res);
+// }).catch((err) => {
+//     console.log("error");
+// });
 // new CronJob(lifeTime(1), function () {
 //     leaveGroup('Cf5592cfee23957b59bd99d543e134828');
 // }, null, true, 'Asia/Bangkok');
