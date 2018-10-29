@@ -48,8 +48,11 @@ app.post("/webhook", (req, res) => {
 
         // mode 1
         else if (words.mode_1.includes(text)) {
-            var prize = lotteryResult(text);
-            sendMessage(sender, prize);
+            lotteryResult.then((res) => {
+                sendMessage(sender, res);
+            }).catch((err) => {
+                sendMessage(sender, "error");
+            });
         }
 
         // mode 2

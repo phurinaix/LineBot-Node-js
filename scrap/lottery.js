@@ -1,9 +1,10 @@
 const cheerio = require('cheerio');
 const request = require('request');
 
-async function lotteryResult(mode) {
+lotteryResult = new Promise((resolve, reject) => {
     request({url: 'https://www.jetsadabet.com/login?fbclid=IwAR1bpvQebY4053K0fO22g7u4itgDzeoiU_66beF_Y4wGVxXhxEd1CKefA74'}, (err, response, body) => {
         if (err) {
+            reject(err);
             return console.log('Failed to request: ', err);
         }
 
@@ -42,12 +43,9 @@ async function lotteryResult(mode) {
         // console.log(firstThreeDigits);
         // console.log(lastThreeDigits);
         // console.log(lastTwoDigits);
-        if (mode == 'mode1') {
-            return await firstPrize;
-        }
-        // return 'nothing';
+        resolve(firstPrize);
     });
-}
+});
 
 module.exports = {
     lotteryResult
