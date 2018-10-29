@@ -49,7 +49,7 @@ app.post("/webhook", (req, res) => {
 
         // mode 1
         else if (words.mode_1.includes(text)) {
-            lotteryResult().then((res) => {
+            lotteryResult.then((res) => {
                 sendMessage(sender, res);
             }).catch((err) => {
                 sendMessage(sender, "error");
@@ -93,7 +93,7 @@ app.listen(port, () => {
     console.log('Starting port');
 });
 
-lotteryResult().then((res) => {
+lotteryResult.then((res) => {
     console.log(`length = ${res.length} and value is : ${res}`);
 }).catch((err) => {
     console.log("error");
