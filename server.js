@@ -49,7 +49,7 @@ app.post("/webhook", (req, res) => {
 
         // mode 1
         else if (words.mode_1.includes(text)) {
-            asyncTime.then((res) => {
+            lotteryResult().then((res) => {
                 sendMessage(sender, res);
             }).catch((err) => {
                 sendMessage(sender, "error");
@@ -93,15 +93,15 @@ app.listen(port, () => {
     console.log('Starting port');
 });
 
-// lotteryResult.then((res) => {
-//     console.log(`length = ${res.length} and value is : ${res}`);
-// }).catch((err) => {
-//     console.log("error");
-// });
+lotteryResult().then((res) => {
+    console.log(`length = ${res.length} and value is : ${res}`);
+}).catch((err) => {
+    console.log("error");
+});
 
-// asyncTime.then((res) => {
-//     console.log(res);
-// });
+asyncTime.then((res) => {
+    console.log(res);
+});
 // new CronJob(lifeTime(1), function () {
 //     leaveGroup('Cf5592cfee23957b59bd99d543e134828');
 // }, null, true, 'Asia/Bangkok');

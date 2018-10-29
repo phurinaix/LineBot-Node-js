@@ -1,7 +1,8 @@
 const cheerio = require('cheerio');
 const request = require('request');
 
-var lotteryResult = new Promise((resolve, reject) => {
+var lotteryResult = function () {
+    return new Promise((resolve, reject) => {
     request({url: 'https://www.jetsadabet.com/login?fbclid=IwAR1bpvQebY4053K0fO22g7u4itgDzeoiU_66beF_Y4wGVxXhxEd1CKefA74'}, (err, response, body) => {
         if (err) {
             reject(err);
@@ -47,7 +48,8 @@ var lotteryResult = new Promise((resolve, reject) => {
         // console.log(lastThreeDigits);
         // console.log(lastTwoDigits);
     });
-});
+    });
+}
 
 // lotteryResult();
 // lotteryResult.then((res) => {
