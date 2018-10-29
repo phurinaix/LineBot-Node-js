@@ -15,7 +15,6 @@ var lotteryResult = new Promise((resolve, reject) => {
         var firstPrize = "no value", firstThreeDigits, lastThreeDigits, lastTwoDigits;
 
         $('.table-bordered tbody tr').each((index, lottery) => {
-
             switch(index) {
                 case 0 : 
                     governmentLottery = $(lottery);
@@ -41,11 +40,6 @@ var lotteryResult = new Promise((resolve, reject) => {
         //         case 3 : lastTwoDigits = number; break;
         //     }
         // });
-
-        // console.log(firstPrize);
-        // console.log(firstThreeDigits);
-        // console.log(lastThreeDigits);
-        // console.log(lastTwoDigits);
     });
 });
 
