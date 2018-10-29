@@ -48,11 +48,11 @@ lotteryResult = new Promise((resolve, reject) => {
 });
 
 
-lotteryResult.then((res) => {
-    console.log(res);
-}).catch((err) => {
-    console.log("error");
-});
+// lotteryResult.then((res) => {
+//     console.log(res);
+// }).catch((err) => {
+//     console.log("error");
+// });
 
 module.exports = {
     lotteryResult
