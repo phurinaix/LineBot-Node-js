@@ -16,14 +16,14 @@ const port = process.env.PORT || 3000;
 process.env.TZ = 'Asia/Bangkok';
 
 app.get("/", (req, res) => {
-    // lotteryResult.then((res) => {
-    //     // console.log(`length = ${res.length} and value is : ${res}`);
-        res.render('home.hbs');
-        
-    //     });
-    // }).catch((err) => {
-    //     console.log("error");
-    // });
+    lotteryResult.then((result) => {
+        // console.log(`length = ${res.length} and value is : ${res}`);
+        res.render('home.hbs', {
+            data: result
+        });
+    }).catch((err) => {
+        console.log("error");
+    });
 });
 
 app.post("/webhook", (req, res) => {
@@ -57,7 +57,12 @@ app.post("/webhook", (req, res) => {
         // mode 1
         else if (words.mode_1.includes(text)) {
             lotteryResult.then((result) => {
-                sendMessage(sender, result);
+                if (!result) {
+                    sendMessage(sender, 'ไม่มีค่า');
+                }
+                else {
+                    sendMessage(sender, result);
+                }
             }).catch((err) => {
                 sendMessage(sender, "error");
             });
@@ -99,7 +104,7 @@ app.post("/webhook", (req, res) => {
 
         // another word
         else {
-            sendMessage(sender, '')
+            sendMessage(sender, 'I don\'t know');
         }
     }
     res.sendStatus(200)
@@ -109,12 +114,13 @@ app.listen(port, () => {
     console.log('Starting port');
 });
 
-lotteryResult.then((res) => {
-    console.log(`length = ${res.length} and value is : ${res}`);
+lotteryResult.then((result) => {
+    // console.log(`length = ${res.length} and value is : ${res}`);
+    console.log(typeof result, result);
 }).catch((err) => {
     console.log("error");
 });
 
-// asyncTime.then((res) => {
-//     console.log(res);
-// });
+asyncTime.then((result) => {
+    console.log(typeof result, result);
+});
