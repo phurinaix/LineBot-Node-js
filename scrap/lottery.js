@@ -2,7 +2,14 @@ const cheerio = require('cheerio');
 const request = require('request');
 
 var lotteryResult = new Promise((resolve, reject) => {
-    request({headers: {'User-Agent': 'Mozilla/5.0'}, url: 'https://www.jetsadabet.com/login'}, (err, response, body) => {
+    request({
+        method: 'GET',
+        headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36'
+        }, 
+        url: 'https://www.jetsadabet.com/login',
+        json: true
+    }, (err, response, body) => {
         if (err) {
             reject(err);
             return console.log('Failed to request: ', err);
@@ -49,11 +56,11 @@ var lotteryResult = new Promise((resolve, reject) => {
 });
 
 // lotteryResult();
-// lotteryResult.then((res) => {
-//     console.log(res);
-// }).catch((err) => {
-//     console.log("error");
-// });
+lotteryResult.then((res) => {
+    console.log(res);
+}).catch((err) => {
+    console.log("error");
+});
 
 module.exports = {
     lotteryResult
