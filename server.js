@@ -125,12 +125,12 @@ app.listen(port, () => {
     console.log('Starting port');
 });
 
-lotteryResult.then((result) => {
-    // console.log(`length = ${res.length} and value is : ${res}`);
-    console.log(typeof result, result);
-}).catch((err) => {
-    console.log("error");
-});
+// lotteryResult.then((result) => {
+//     // console.log(`length = ${res.length} and value is : ${res}`);
+//     console.log(typeof result, result);
+// }).catch((err) => {
+//     console.log("error");
+// });
 
 // asyncTime.then((result) => {
 //     console.log(typeof result, result);
