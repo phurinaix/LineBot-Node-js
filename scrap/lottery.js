@@ -10,26 +10,28 @@ var lotteryResult = new Promise((resolve, reject) => {
 
         const $ = cheerio.load(body);
         // const lotteries = $('.table-bordered tbody');
-        var governmentLottery, thaiLottery, interLottery, jabYeeGee, jabYeeGeeVIP;
+        var thaiLottery, interLottery, jabYeeGee, jabYeeGeeVIP;
         var thaiLotteryMorning, thaiLotteryNoon, thaiLotteryAfternoon, thaiLotteryEvening;
-        var firstPrize, firstThreeDigits, lastThreeDigits, lastTwoDigits;
+        var firstThreeDigits, lastThreeDigits, lastTwoDigits;
 
-        resolve('Request website');
+        // resolve('Request website');
         $('.table-bordered tbody tr').each((index, lottery) => {
-            switch(index) {
-                case 0 : 
-                    governmentLottery = $(lottery);
-                    firstPrize = governmentLottery.children('td').eq(0).text().replace(/\s/g, '');
-                    // return resolve(firstPrize);
-                case 1 : thaiLottery = $(lottery); break;
-                case 2 : interLottery = $(lottery); break;
-                case 3 : thaiLotteryMorning = $(lottery); break;
-                case 4 : thaiLotteryNoon = $(lottery); break;
-                case 5 : thaiLotteryAfternoon = $(lottery); break;
-                case 6 : thaiLotteryEvening = $(lottery); break;
-                case 7 : jabYeeGee = $(lottery); break;
-                case 8 : jabYeeGeeVIP = $(lottery); break;
-            }
+            // switch(index) {
+            //     case 0 :
+                if (index == 0) {
+                    var governmentLottery = $(lottery);
+                    var firstPrize = governmentLottery.children('td').eq(0).text().replace(/\s/g, '');
+                    return resolve(firstPrize);
+                }
+                // case 1 : thaiLottery = $(lottery); break;
+                // case 2 : interLottery = $(lottery); break;
+                // case 3 : thaiLotteryMorning = $(lottery); break;
+                // case 4 : thaiLotteryNoon = $(lottery); break;
+                // case 5 : thaiLotteryAfternoon = $(lottery); break;
+                // case 6 : thaiLotteryEvening = $(lottery); break;
+                // case 7 : jabYeeGee = $(lottery); break;
+                // case 8 : jabYeeGeeVIP = $(lottery); break;
+            // }
         });
 
         // governmentLottery.children('td').each((index, element) => {
