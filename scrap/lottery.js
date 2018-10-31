@@ -2,7 +2,7 @@ const cheerio = require('cheerio');
 const request = require('request');
 
 var lotteryResult = new Promise((resolve, reject) => {
-    request({url: 'https://www.jetsadabet.com/login'}, (err, response, body) => {
+    request({headers: {'User-Agent': 'Mozilla/5.0'}, url: 'https://www.jetsadabet.com/login'}, (err, response, body) => {
         if (err) {
             reject(err);
             return console.log('Failed to request: ', err);
