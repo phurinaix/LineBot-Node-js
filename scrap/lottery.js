@@ -9,17 +9,18 @@ var lotteryResult = new Promise((resolve, reject) => {
         }
 
         const $ = cheerio.load(body);
-        const lotteries = $('.table-bordered tbody');
+        // const lotteries = $('.table-bordered tbody');
         var governmentLottery, thaiLottery, interLottery, jabYeeGee, jabYeeGeeVIP;
         var thaiLotteryMorning, thaiLotteryNoon, thaiLotteryAfternoon, thaiLotteryEvening;
-        var firstPrize = "no value", firstThreeDigits, lastThreeDigits, lastTwoDigits;
+        var firstPrize, firstThreeDigits, lastThreeDigits, lastTwoDigits;
 
+        resolve('Request website');
         $('.table-bordered tbody tr').each((index, lottery) => {
             switch(index) {
                 case 0 : 
                     governmentLottery = $(lottery);
                     firstPrize = governmentLottery.children('td').eq(0).text().replace(/\s/g, '');
-                    return resolve(firstPrize);
+                    // return resolve(firstPrize);
                 case 1 : thaiLottery = $(lottery); break;
                 case 2 : interLottery = $(lottery); break;
                 case 3 : thaiLotteryMorning = $(lottery); break;

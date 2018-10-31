@@ -16,13 +16,18 @@ const port = process.env.PORT || 3000;
 process.env.TZ = 'Asia/Bangkok';
 
 app.get("/", (req, res) => {
-    lotteryResult.then((result) => {
-        // console.log(`length = ${res.length} and value is : ${res}`);
+    // lotteryResult.then((result) => {
+    //     // console.log(`length = ${res.length} and value is : ${res}`);
+    //     res.render('home.hbs', {
+    //         data: result
+    //     });
+    // }).catch((err) => {
+    //     console.log("error");
+    // });
+    asyncTime.then((result) => {
         res.render('home.hbs', {
             data: result
         });
-    }).catch((err) => {
-        console.log("error");
     });
 });
 
@@ -131,4 +136,4 @@ app.listen(port, () => {
 //     console.log(typeof result, result);
 // });
 
-console.log(process.ENV);
+// console.log(process.ENV);
