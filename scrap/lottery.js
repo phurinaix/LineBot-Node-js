@@ -5,7 +5,8 @@ var lotteryResult = new Promise((resolve, reject) => {
     request({
         method: 'GET',
         headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36'
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+            'cache-control': 'max-age=0'
         }, 
         url: 'https://www.jetsadabet.com/login',
         json: true
