@@ -105,7 +105,7 @@ function modeText(text) {
     // another word
 }
 
-console.log(modeText('mode4'));
+// console.log(modeText('mode4'));
 module.exports = {
     modeText
 };

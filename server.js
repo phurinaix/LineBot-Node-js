@@ -51,17 +51,22 @@ app.post("/webhook", (req, res) => {
         pushMessage(sreplyMessage, ender, 'sender: ' + sender);
     }
     else if (type == 'message') {
-        // var sender = req.body.events[0].source.userId
         var text = req.body.events[0].message.text.replace(/\s+/g, "");
 
-        if (typeof text === 'undefined') {
-            console.log("error");
-        }
-        else {
-            text = text.toLowerCase();
-            var message = modeText(text);
-            // pushMessage(sreplyMessage, ender, JSON.stringify(req.body.events[0]));
-            replyMessage(replyToken, message);
+        if (typeof text !== 'undefined') {
+            var replyText = modeText(text.toLowerCase());
+
+            if (/userId/.test(JSON.stringify(req.body.events[0]))) {
+                var userId = req.body.events[0].source.userId;
+                replyMessage(replyToken, replyText);
+            }
+            else {
+                var groupId = req.body.events[0].source.groupId;
+                replyMessage(replyToken, replyText);
+                if (replayText === 'exit') {
+                    leaveGroup(groupId);
+                }
+            }
         }
     }
     res.sendStatus(200)
