@@ -64,8 +64,8 @@ app.post("/webhook", (req, res) => {
             else {
                 var groupId = req.body.events[0].source.groupId;
                 replyMessage(replyToken, replyText);
-                replyMessage(replyToken, JSON.stringify(req.body.events[0]));
-                if (replayText === 'exit') {
+                pushMessage(groupId, JSON.stringify(req.body.events[0]));
+                if (replyText === 'exit') {
                     leaveGroup(groupId);
                 }
             }
