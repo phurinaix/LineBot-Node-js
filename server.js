@@ -59,7 +59,7 @@ app.post("/webhook", (req, res) => {
             if (/userId/.test(JSON.stringify(req.body.events[0]))) {
                 var userId = req.body.events[0].source.userId;
                 replyMessage(replyToken, replyText);
-                replyMessage(replyToken, JSON.stringify(req.body.events[0]));
+                pushMessage(userId, JSON.stringify(req.body.events[0]));
             }
             else {
                 var groupId = req.body.events[0].source.groupId;
