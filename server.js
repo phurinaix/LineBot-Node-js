@@ -3,7 +3,6 @@ const app = express();
 const bodyParser = require('body-parser');
 const CronJob = require('cron').CronJob;
 const {sendMessage, leaveGroup} = require('./api/messaging-api');
-const words = require('./words.js');
 const {lifeTime} = require('./lifetime');
 const {lotteryResult} = require('./scrap/lottery');
 const {asyncTime} = require('./async');
@@ -60,60 +59,9 @@ app.post("/webhook", (req, res) => {
         }
         else {
             text = text.toLowerCase();
-            // greeting message
-            if (words.greeting.includes(text)) {
-                sendMessage(sender, 'สวัสดีจ้ะ');
-            }
-
-            // mode 1
-            else if (words.mode_1.includes(text)) {
-                lotteryResult.then((result) => {
-                    if (result == 'null' || result == 'undefined') {
-                        sendMessage(sender, 'ไม่มีค่า');
-                    }
-                    else {
-                        sendMessage(sender, result);
-                    }
-                }).catch((err) => {
-                    sendMessage(sender, "error");
-                });
-            }
-
-            // mode 2
-            else if (words.mode_2.includes(text)) {
-                var message = modeText(2);
-                sendMessage(sender, message);                
-            }
-
-            // mode 3
-            else if (words.mode_3.includes(text)) {
-                sendMessage(sender, 'โหมด 3');
-            }
-
-            // mode 4
-            else if (words.mode_4.includes(text)) {
-                sendMessage(sender, 'โหมด 4');
-            }
-
-            // mode 5
-            else if (words.mode_5.includes(text)) {
-                sendMessage(sender, 'โหมด 5');
-            }
-
-            // mode 6
-            else if (words.mode_6.includes(text)) {
-                sendMessage(sender, 'โหมด 6');
-            }
-
-            // mode 7
-            else if (words.mode_7.includes(text)) {
-                sendMessage(sender, 'โหมด 7');
-            }
-
-            // another word
-            else {
-                sendMessage(sender, 'I don\'t know');
-            }
+            
+            var replyMessage = modeText(text);
+            sendMessage(sender, replyMessage);
         }
     }
     res.sendStatus(200)
