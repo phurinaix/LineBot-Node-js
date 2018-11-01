@@ -7,6 +7,7 @@ const words = require('./words.js');
 const {lifeTime} = require('./lifetime');
 const {lotteryResult} = require('./scrap/lottery');
 const {asyncTime} = require('./async');
+const {modeText} = require('./test-data/test-data');
 
 app.set('view engine', 'hbs');
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -80,11 +81,8 @@ app.post("/webhook", (req, res) => {
 
             // mode 2
             else if (words.mode_2.includes(text)) {
-                asyncTime.then((result) => {
-                    sendMessage(sender, result);
-                }).catch((err) => {
-                    sendMessage(sender, "error");
-                });
+                var message = modeText(2);
+                sendMessage(sender, message);                
             }
 
             // mode 3
