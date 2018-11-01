@@ -38,17 +38,17 @@ app.post("/webhook", (req, res) => {
     if (type == 'join') {
         var groupId = req.body.events[0].source.groupId;
         var dateNow = new Date();
-        pushMessage(greplyMessage, roupId, 'life time: ' + lifeTime(1, dateNow));
+        // pushMessage(groupId, roupId, 'life time: ' + lifeTime(1, dateNow));
 
         // lifetime in minutes
-        new CronJob(lifeTime(1, dateNow), function () {
+        new CronJob(lifeTime(5, dateNow), function () {
             // leaveGroup(groupId);
-            pushMessage(greplyMessage, roupId, 'Hello');
+            pushMessage(groupId, roupId, 'Hello');
         }, null, true, 'Asia/Bangkok');
     }
     else if (type == 'follow') {
-        var sender = req.body.events[0].source.userId
-        pushMessage(sreplyMessage, ender, 'sender: ' + sender);
+        var userId = req.body.events[0].source.userId
+        pushMessage(userId, 'สวัสดีครับ');
     }
     else if (type == 'message') {
         var text = req.body.events[0].message.text.replace(/\s+/g, "");
@@ -60,14 +60,14 @@ app.post("/webhook", (req, res) => {
             if (sourceType === 'user') {
                 var userId = req.body.events[0].source.userId;
                 replyMessage(replyToken, replyText);
-                pushMessage(userId, sourceType);
             }
             else {
                 var groupId = req.body.events[0].source.groupId;
-                replyMessage(replyToken, replyText);
-                pushMessage(groupId, sourceType);
+    
                 if (replyText === 'exit') {
                     leaveGroup(groupId);
+                } else {
+                    replyMessage(replyToken, replyText);
                 }
             }
         }
