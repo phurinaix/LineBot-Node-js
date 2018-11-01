@@ -55,16 +55,17 @@ app.post("/webhook", (req, res) => {
 
         if (typeof text !== 'undefined') {
             var replyText = modeText(text.toLowerCase());
+            var sourceType = req.body.events[0].source.type;
 
-            if (/userId/g.test(JSON.stringify(req.body.events[0]))) {
+            if (sourceType === 'user') {
                 var userId = req.body.events[0].source.userId;
                 replyMessage(replyToken, replyText);
-                pushMessage(userId, /userId/g.test(JSON.stringify(req.body.events[0])));
+                pushMessage(userId, sourceType);
             }
             else {
                 var groupId = req.body.events[0].source.groupId;
                 replyMessage(replyToken, replyText);
-                pushMessage(groupId, /userId/g.test(JSON.stringify(req.body.events[0])));
+                pushMessage(groupId, sourceType);
                 if (replyText === 'exit') {
                     leaveGroup(groupId);
                 }
