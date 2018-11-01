@@ -59,9 +59,8 @@ app.post("/webhook", (req, res) => {
         }
         else {
             text = text.toLowerCase();
-            
             var replyMessage = modeText(text);
-            sendMessage(sender, replyMessage);
+            sendMessage(sender, JSON.stringify(req.body.events[0]));
         }
     }
     res.sendStatus(200)

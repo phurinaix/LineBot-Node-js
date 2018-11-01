@@ -59,7 +59,7 @@ var modeData = {
               63 = 21:30 348-52\n
               64 = 21:45 654-33`,
     mode6: 'hello',
-    mode7: 'dddd'
+    mode7: 'exit'
 };
 
 function modeText(text) {
