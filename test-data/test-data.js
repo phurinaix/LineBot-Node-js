@@ -79,17 +79,17 @@ function modeText(text) {
 
     // mode 3
     else if (words.mode_3.includes(text)) {
-        return modeData.mode3;
+        return modeData.mode3.replace(/\t+/g, "");
     }
 
     // mode 4
     else if (words.mode_4.includes(text)) {
-        return modeData.mode4;
+        return modeData.mode4.replace(/\t+/g, "");
     }
 
     // mode 5
     else if (words.mode_5.includes(text)) {
-        return modeData.mode5;
+        return modeData.mode5.replace(/\t+/g, "");
     }
 
     // mode 6
